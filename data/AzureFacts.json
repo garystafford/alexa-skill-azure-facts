@@ -24,7 +24,7 @@
             "S": "released"
           },
           "Response": {
-            "S": "according to Wikipedia, Azure was released in February 1, 2010 as 'Windows Azure' before being renamed 'Microsoft Azure' on March 25, 2014."
+            "S": "according to Wikipedia, Azure was released on February 1, 2010 as 'Windows Azure' before being renamed 'Microsoft Azure' on March 25, 2014."
           },
           "Image": {
             "S": "image-11.png"
