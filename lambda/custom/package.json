@@ -1,0 +1,26 @@
+{
+  "name": "alexa-skill-azure-facts",
+  "version": "1.0.0",
+  "description": "Alexa Skill that shares interesting facts about Microsoft Azure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "AWS",
+    "Facts",
+    "Amazon Web Services"
+  ],
+  "author": {
+    "name": "Gary A. Stafford",
+    "email": "garystafford@rochester.rr.com",
+    "url": "https://programmaticponderings.com"
+  },
+  "repository": "https://github.com/garystafford/alexa-skill-azure-facts",
+  "license": "MIT",
+  "dependencies": {
+    "ask-sdk-core": "^2.0.7",
+    "ask-sdk-model": "^1.3.1",
+    "aws-sdk": "^2.275.1"
+  }
+}

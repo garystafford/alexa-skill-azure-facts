@@ -1,0 +1,237 @@
+{
+  "AzureFacts": [{
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "description"
+          },
+          "Response": {
+            "S": "according to Wikipedia, Microsoft Azure is a cloud computing service created by Microsoft for building, testing, deploying, and managing applications and services through a global network of Microsoft-managed data centers."
+          },
+          "Image": {
+            "S": "image-01.png"
+          },
+          "Hits": {
+            "N": "0"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "released"
+          },
+          "Response": {
+            "S": "according to Wikipedia, Azure was released in February 1, 2010 as 'Windows Azure' before being renamed 'Microsoft Azure' on March 25, 2014."
+          },
+          "Image": {
+            "S": "image-11.png"
+          },
+          "Hits": {
+            "N": "0"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "global"
+          },
+          "Response": {
+            "S": "according to Microsoft, with 54 Azure regions, Azure has more global regions than any other cloud provider. Azure is currently available in 140 countries."
+          },
+          "Image": {
+            "S": "image-02.png"
+          },
+          "Hits": {
+            "N": "0"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "regions"
+          },
+          "Response": {
+            "S": "according to Microsoft, an Azure region is a set of datacenters deployed within a latency-defined perimeter and connected through a dedicated regional low-latency network."
+          },
+          "Image": {
+            "S": "image-03.png"
+          },
+          "Hits": {
+            "N": "0"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "geographies"
+          },
+          "Response": {
+            "S": "according to Microsoft, Azure regions are organized into geographies. An Azure geography ensures that data residency, sovereignty, compliance, and resiliency requirements are honored within geographical boundaries."
+          },
+          "Image": {
+            "S": "image-07.png"
+          },
+          "Hits": {
+            "N": "0"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "platforms"
+          },
+          "Response": {
+            "S": "according to Wikipedia, Azure provides Software as a Service (SaaS), Containers as a Service (CaaS), Platform as a Service (PaaS), and Infrastructure as a Service (IaaS)."
+          },
+          "Image": {
+            "S": "image-10.png"
+          },
+          "Hits": {
+            "N": "0"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "categories"
+          },
+          "Response": {
+            "S": "Microsoft Azure offer eighteen categories of products, including Compute, Containers, Databases, Mobile, Networking, and Security."
+          },
+          "Image": {
+            "S": "image-04.png"
+          },
+          "Hits": {
+            "N": "0"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "products"
+          },
+          "Response": {
+            "S": "Microsoft offers over 500 products within eighteen categories, including Machine Learning, Analytics, Functions, Containers, CosmosDB, and Visual Studio Team Services."
+          },
+          "Image": {
+            "S": "image-12.png"
+          },
+          "Hits": {
+            "N": "0"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "cognitive"
+          },
+          "Response": {
+            "S": "Azure's intelligent algorithms allow apps to see, hear, speak, understand and interpret user needs through natural methods of communication."
+          },
+          "Image": {
+            "S": "image-09.png"
+          },
+          "Hits": {
+            "N": "0"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "compliance"
+          },
+          "Response": {
+            "S": "Microsoft provides the most comprehensive set of compliance offerings (including certifications and attestations) of any cloud service provider."
+          },
+          "Image": {
+            "S": "image-06.png"
+          },
+          "Hits": {
+            "N": "9"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "first"
+          },
+          "Response": {
+            "S": "according to Wikipedia, Microsoft announced SQL Azure Relational Database in March, 2009. Other early Azure products included AppFabric Service Bus, Access Control, and Windows Azure Drive, according to Microsoft."
+          },
+          "Image": {
+            "S": "image-08.png"
+          },
+          "Hits": {
+            "N": "0"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "certifications"
+          },
+          "Response": {
+            "S": "Microsoft currently offers ten Azure certification exams, allowing IT professionals the ability to differentiate themselves and validate their knowledge and skills."
+          },
+          "Image": {
+            "S": "image-06.png"
+          },
+          "Hits": {
+            "N": "0"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Fact": {
+            "S": "competition"
+          },
+          "Response": {
+            "S": "according to the G2 Crowd website, Azure's Cloud competitors include Amazon Web Services (AWS), Digital Ocean, Google Compute Engine (GCE), and Rackspace."
+          },
+          "Image": {
+            "S": "image-05.png"
+          },
+          "Hits": {
+            "N": "6"
+          }
+        }
+      }
+    }
+  ]
+}

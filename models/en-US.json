@@ -1,0 +1,226 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "azure tech facts",
+      "intents": [{
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AzureFactsIntent",
+          "slots": [{
+              "name": "myName",
+              "type": "AMAZON.US_FIRST_NAME",
+              "samples": [
+                "{myName}",
+                "I am {myName}",
+                "I'm {myName}",
+                "my name is {myName}",
+                "my name's {myName}",
+                "name is {myName}",
+                "name's {myName}",
+                "they call me {myName}"
+              ]
+            },
+            {
+              "name": "myQuestion",
+              "type": "list_of_facts",
+              "samples": [
+                "give me a {myQuestion} fact",
+                "how many {myQuestion} does Azure have",
+                "tell {myName} a {myQuestion} fact",
+                "tell {myName} about {myQuestion}",
+                "tell {myName} about Azure's {myQuestion}",
+                "tell me a {myQuestion} fact",
+                "tell me about {myQuestion}",
+                "tell me about Azure's {myQuestion}",
+                "when was Azure {myQuestion}"
+              ]
+            }
+          ],
+          "samples": [
+            "a fact about {myQuestion}",
+            "a question about {myQuestion}",
+            "a question about their {myQuestion}",
+            "about {myQuestion} for {myName}",
+            "ask a question",
+            "give me a {myQuestion} fact",
+            "how many {myQuestion} does Azure have",
+            "request a fact",
+            "tell {myName} a {myQuestion} fact",
+            "tell {myName} about {myQuestion}",
+            "tell {myName} about Azure's {myQuestion}",
+            "tell me a fact",
+            "tell me about {myQuestion}",
+            "tell me about Azure's {myQuestion}",
+            "when was Azure {myQuestion}"
+          ]
+        }
+      ],
+      "types": [{
+        "name": "list_of_facts",
+        "values": [{
+            "name": {
+              "value": "competition",
+              "synonyms": [
+                "competitors",
+                "competitor"
+              ]
+            }
+          },
+          {
+            "name": {
+              "value": "certifications",
+              "synonyms": [
+                "certification",
+                "certification exam",
+                "certification exams"
+              ]
+            }
+          },
+          {
+            "name": {
+              "value": "first",
+              "synonyms": [
+                "first service",
+                "first services",
+                "first product",
+                "first products"
+              ]
+            }
+          },
+          {
+            "name": {
+              "value": "compliance"
+            }
+          },
+          {
+            "name": {
+              "value": "cognitive",
+              "synonyms": [
+                "cognitive services",
+                "cognitive service"
+              ]
+            }
+          },
+          {
+            "name": {
+              "value": "products",
+              "synonyms": [
+                "services"
+              ]
+            }
+          },
+          {
+            "name": {
+              "value": "categories"
+            }
+          },
+          {
+            "name": {
+              "value": "platforms"
+            }
+          },
+          {
+            "name": {
+              "value": "geographies",
+              "synonyms": [
+                "geography"
+              ]
+            }
+          },
+          {
+            "name": {
+              "value": "regions",
+              "synonyms": [
+                "regional",
+                "regional infrastructure"
+              ]
+            }
+          },
+          {
+            "name": {
+              "value": "global",
+              "synonyms": [
+                "worldwide",
+                "global infrastructure"
+              ]
+            }
+          },
+          {
+            "name": {
+              "value": "released",
+              "synonyms": [
+                "release date"
+              ]
+            }
+          },
+          {
+            "name": {
+              "value": "description",
+              "synonyms": [
+                "Azure"
+              ]
+            }
+          }
+        ]
+      }]
+    },
+    "dialog": {
+      "intents": [{
+        "name": "AzureFactsIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [{
+            "name": "myName",
+            "type": "AMAZON.US_FIRST_NAME",
+            "confirmationRequired": false,
+            "elicitationRequired": true,
+            "prompts": {
+              "elicitation": "Elicit.Slot.1179559129267.994103333535"
+            }
+          },
+          {
+            "name": "myQuestion",
+            "type": "list_of_facts",
+            "confirmationRequired": false,
+            "elicitationRequired": true,
+            "prompts": {
+              "elicitation": "Elicit.Slot.831386167999.1165955124217"
+            }
+          }
+        ]
+      }]
+    },
+    "prompts": [{
+        "id": "Elicit.Slot.1179559129267.994103333535",
+        "variations": [{
+          "type": "PlainText",
+          "value": "Who am I speaking to. You can say things like, my name is Gary."
+        }]
+      },
+      {
+        "id": "Elicit.Slot.637893440285.407020781347",
+        "variations": [{
+          "type": "PlainText",
+          "value": "What is your question?"
+        }]
+      },
+      {
+        "id": "Elicit.Slot.831386167999.1165955124217",
+        "variations": [{
+          "type": "PlainText",
+          "value": "What would you like to know about Azure. You can say things like, tell me about Azure's global infrastructure, or when was Azure released?"
+        }]
+      }
+    ]
+  }
+}
