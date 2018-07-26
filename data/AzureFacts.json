@@ -204,7 +204,7 @@
             "S": "certifications"
           },
           "Response": {
-            "S": "Microsoft currently offers ten Azure certification exams, allowing IT professionals the ability to differentiate themselves and validate their knowledge and skills."
+            "S": "Microsoft currently offers ten different Azure certification exams, allowing IT professionals the ability to differentiate themselves and validate their knowledge and skills."
           },
           "Image": {
             "S": "image-06.png"
