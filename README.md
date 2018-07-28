@@ -37,7 +37,7 @@ aws dynamodb batch-write-item \
 
 ```bash
 aws s3api create-bucket \
-  --bucket <my_bucket_name> \
+  --bucket <your_bucket_name> \
   --region us-east-1
 ```
 
