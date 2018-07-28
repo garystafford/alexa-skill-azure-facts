@@ -49,6 +49,9 @@ ask simulate \
   --locale "en-US" \
   --skill-id "<your_skill_id>" \
   --profile "default"
+
+# run multiple tests
+sh ./tests/tests.sh
 ```
 
 ## Sample Invocations

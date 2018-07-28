@@ -1,8 +1,13 @@
 #!/bin/sh
 
+# simulate command doesn't seem to work well with initial intent in invocation?
+
+# constants
 LOCALE="en-US"
 SKILL_ID="amzn1.ask.skill.3fa13210-311a-4d19-b822-0e2bca344224"
 PROFILE="default"
+
+# utterances to tests
 declare -a utterances=(
   "load Azure Tech Facts"
   "ask a question"
