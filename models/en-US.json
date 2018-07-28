@@ -42,7 +42,7 @@
                 "tell me a {myQuestion} fact",
                 "tell me about {myQuestion}",
                 "tell me about Azure's {myQuestion}",
-                "when was Azure {myQuestion}"
+                "tell me when was Azure {myQuestion}"
               ]
             }
           ],
@@ -52,6 +52,7 @@
             "a question about their {myQuestion}",
             "about {myQuestion} for {myName}",
             "ask a question",
+            "for a {myQuestion} fact for {myName}",
             "give me a {myQuestion} fact",
             "how many {myQuestion} does Azure have",
             "request a fact",
