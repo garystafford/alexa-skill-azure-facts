@@ -4,7 +4,7 @@
 
 # constants
 LOCALE="en-US"
-SKILL_ID="amzn1.ask.skill.3fa13210-311a-4d19-b822-0e2bca344224"
+SKILL_ID="<your_skill_id>"
 PROFILE="default"
 
 # utterances to tests
@@ -29,7 +29,7 @@ declare -a utterances=(
 
 for utterance in "${utterances[@]}"
 do
-  echo "${utterance}"
+  echo "Utterance: ${utterance}"
   ask simulate \
     --text "$utterance" \
     --locale $LOCALE \
