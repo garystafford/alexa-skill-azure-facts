@@ -68,7 +68,7 @@ const AzureFactsIntent = {
         myName = Object.is(myName, undefined) ? undefined : capitalizeFirstLetter(myName);
         console.log(`myName: ${myName}`);
         console.log(`myQuestion: ${myQuestion}`);
-        let factToSpeak = `${myName}, ${fact.Attributes.Response}`
+        let factToSpeak = `${myName}, ${fact.Attributes.Response}`;
         console.log(factToSpeak);
         cardContent = factToSpeak;
         return handlerInput
