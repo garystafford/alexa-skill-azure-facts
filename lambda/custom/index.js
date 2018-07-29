@@ -8,7 +8,7 @@ const SKILL_NAME = "Azure Tech Facts";
 const CARD_TITLE = `Welcome to ${SKILL_NAME}`;
 const FACTS_ARRAY = ["description", "released", "global", "regions", "geographies", "platforms", "categories", "products", "cognitive", "compliance", "first", "certifications", "competition"];
 const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Products, Geographies, Global Presence, Platforms, Product Categories, Products, Regions, and Release Date";
-const BUCKET_URL = "https://s3.amazonaws.com/alexa-skills-gstafford"
+const BUCKET_URL = "https://s3.amazonaws.com/alexa-skills-gstafford";
 
 const IMAGES = {
     smallImageUrl: `${BUCKET_URL}/azure-108x108.png`,
