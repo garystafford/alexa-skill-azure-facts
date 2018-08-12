@@ -1,3 +1,7 @@
+// author: Gary A. Stafford
+// site: https://programmaticponderings.com
+// license: MIT License
+
 "use strict";
 const Alexa = require("ask-sdk-core");
 const AWS = require("aws-sdk");

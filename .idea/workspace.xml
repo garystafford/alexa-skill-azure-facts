@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62df20e6-13e0-4833-bfda-468b9c3ba82e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/lambda/custom/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/lambda/custom/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,7 +37,7 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lambda/custom/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
+            <state relative-caret-position="-845">
               <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
             </state>
           </provider>
@@ -188,16 +188,15 @@
       <workItem from="1531780901379" duration="3291000" />
       <workItem from="1531877868712" duration="4897000" />
       <workItem from="1532289780244" duration="4690000" />
-      <workItem from="1532828655523" duration="1183000" />
+      <workItem from="1532828655523" duration="2184000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18631000" />
+    <option name="totallyTimeSpent" value="19632000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -367,7 +366,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lambda/custom/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
+        <state relative-caret-position="-845">
           <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
         </state>
       </provider>
