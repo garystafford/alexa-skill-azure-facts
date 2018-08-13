@@ -19,7 +19,7 @@ const IMAGES = {
     largeImageUrl: `${BUCKET_URL}/azure-512x512.png`
 };
 
-let myName, myQuestion;
+let myName;
 
 /* INTENT HANDLERS */
 const LaunchRequestHandler = {
@@ -48,35 +48,15 @@ const AzureFactsIntent = {
             && request.intent.name === "AzureFactsIntent";
     },
     async handle(handlerInput) {
-        const slots = handlerInput.requestEnvelope.request.intent.slots;
-        let slotToElicit;
+        let currentIntent;
 
-        if (slots !== undefined && slots.myName !== undefined) {
-            myName = slotValue(slots.myName);
-        } else {
+        myName = slotValue(handlerInput.requestEnvelope.request.intent.slots.myName)
+        let myQuestion = slotValue(handlerInput.requestEnvelope.request.intent.slots.myQuestion);
+
+        if (!myName) {
+            currentIntent = myName;
             return handlerInput.responseBuilder
-                .addDelegateDirective(myName)
-                .getResponse();
-        }
-
-        console.log(`foo foo myQuestion: ${myQuestion}`);
-
-        if (slots !== undefined && slots.myQuestion !== undefined) {
-            myQuestion = slotValue(slots.myQuestion);
-            console.log(`foo foo foo myQuestion: ${myQuestion}`);
-
-        } else {
-            console.log(`foo myQuestion: ${myQuestion}`);
-            slotToElicit = "myQuestion";
-            speechOutput = "What would you like to know about Azure. You can say things like, tell me about Azure's global infrastructure, or when was Azure released?";
-            repromptspeechOutput = "What would you like to know about Azure?";
-            cardContent = speechOutput;
-
-            return handlerInput.responseBuilder
-                .addElicitSlotDirective(slotToElicit)
-                .speak(speechOutput)
-                .reprompt(repromptspeechOutput)
-                .withStandardCard(CARD_TITLE, cardContent, IMAGES.smallImageUrl, IMAGES.largeImageUrl)
+                .addDelegateDirective(currentIntent)
                 .getResponse();
         }
 
@@ -85,6 +65,14 @@ const AzureFactsIntent = {
             myQuestion = FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
         }
 
+        if (!myQuestion) {
+            currentIntent = myQuestion;
+            return handlerInput.responseBuilder
+                .addDelegateDirective(currentIntent)
+                .getResponse();
+        }
+
+
         let fact = await buildFactResponse(myName, myQuestion);
         myName = Object.is(myName, undefined) ? undefined : capitalizeFirstLetter(myName);
         console.log(`myName: ${myName}`);
@@ -92,45 +80,16 @@ const AzureFactsIntent = {
         let factToSpeak = `${myName}, ${fact.Attributes.Response}`;
         console.log(factToSpeak);
         cardContent = factToSpeak;
-        myQuestion = undefined;
+
         return handlerInput
             .responseBuilder
-            .speak(factToSpeak + " Would you like another fact?")
-            .reprompt("Would you like another fact?")
+            .speak(factToSpeak)
+            .reprompt("You can request another fact")
             .withStandardCard(CARD_TITLE, cardContent,
                 IMAGES.smallImageUrl, `${BUCKET_URL}\/${fact.Attributes.Image}`)
             .getResponse();
     },
 };
-
-
-const YesIntentHandler = {
-    canHandle(handlerInput) {
-        const request = handlerInput.requestEnvelope.request;
-        return request.type === "IntentRequest"
-            && request.intent.name === "AMAZON.YesIntent";
-    },
-    handle(handlerInput) {
-        return handlerInput
-            .responseBuilder
-            .addDelegateDirective(myName)
-            .getResponse();
-    },
-};
-//
-// const NoIntentHandler = {
-//     canHandle(handlerInput) {
-//         const request = handlerInput.requestEnvelope.request;
-//         return request.type === "IntentRequest"
-//             && request.intent.name === "AMAZON.NoIntent";
-//     },
-//     handle(handlerInput) {
-//         return handlerInput
-//             .responseBuilder
-//             .addDelegateDirective(ExitHandler)
-//             .getResponse();
-//     },
-// };
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
