@@ -19,10 +19,13 @@ const IMAGES = {
     largeImageUrl: `${BUCKET_URL}/azure-512x512.png`
 };
 
+let myName, myQuestion;
+
 /* INTENT HANDLERS */
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === "LaunchRequest";
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === "LaunchRequest";
     },
     handle(handlerInput) {
         speechOutput = `Welcome to ${SKILL_NAME}. To start, say, ask a question, or, give me a fact. To list the available facts, say help.`;
@@ -40,32 +43,57 @@ const LaunchRequestHandler = {
 
 const AzureFactsIntent = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === "IntentRequest"
-            && handlerInput.requestEnvelope.request.intent.name === "AzureFactsIntent";
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === "IntentRequest" && (
+            request.intent.name === "AzureFactsIntent" ||
+            request.intent.name === "AMAZON.YesIntent"
+        );
     },
     async handle(handlerInput) {
-        let currentIntent;
+        const slots = handlerInput.requestEnvelope.request.intent.slots;
+        let slotToElicit;
 
-        let myName = slotValue(handlerInput.requestEnvelope.request.intent.slots.myName);
-        let myQuestion = slotValue(handlerInput.requestEnvelope.request.intent.slots.myQuestion);
+        if (slots !== undefined && slots.myName !== undefined) {
+            myName = slotValue(slots.myName);
+        } else {
+            console.log(`foo myName: ${myName}`);
+            slotToElicit = "myName";
+            speechOutput = "Who am I speaking to. You can say things like, my name is Gary.";
+            repromptspeechOutput = "Who am I speaking to?";
+            cardContent = speechOutput;
 
-        if (!myName) {
-            currentIntent = myName;
             return handlerInput.responseBuilder
-                .addDelegateDirective(currentIntent)
+                .addElicitSlotDirective(slotToElicit)
+                .speak(speechOutput)
+                .reprompt(repromptspeechOutput)
+                .withStandardCard(CARD_TITLE, cardContent, IMAGES.smallImageUrl, IMAGES.largeImageUrl)
+                .getResponse();
+        }
+
+        console.log(`foo foo myQuestion: ${myQuestion}`);
+
+        if (slots !== undefined && slots.myQuestion !== undefined) {
+            myQuestion = slotValue(slots.myQuestion);
+            console.log(`foo foo foo myQuestion: ${myQuestion}`);
+
+        } else {
+            console.log(`foo myQuestion: ${myQuestion}`);
+            slotToElicit = "myQuestion";
+            speechOutput = "What would you like to know about Azure. You can say things like, tell me about Azure's global infrastructure, or when was Azure released?";
+            repromptspeechOutput = "What would you like to know about Azure?";
+            cardContent = speechOutput;
+
+            return handlerInput.responseBuilder
+                .addElicitSlotDirective(slotToElicit)
+                .speak(speechOutput)
+                .reprompt(repromptspeechOutput)
+                .withStandardCard(CARD_TITLE, cardContent, IMAGES.smallImageUrl, IMAGES.largeImageUrl)
                 .getResponse();
         }
 
         // return a random fact...
         if (myQuestion === "random") {
             myQuestion = FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
-        }
-
-        if (!myQuestion) {
-            currentIntent = myQuestion;
-            return handlerInput.responseBuilder
-                .addDelegateDirective(currentIntent)
-                .getResponse();
         }
 
         let fact = await buildFactResponse(myName, myQuestion);
@@ -75,19 +103,51 @@ const AzureFactsIntent = {
         let factToSpeak = `${myName}, ${fact.Attributes.Response}`;
         console.log(factToSpeak);
         cardContent = factToSpeak;
+        myQuestion = undefined;
         return handlerInput
             .responseBuilder
-            .speak(factToSpeak)
+            .speak(factToSpeak + " Would you like another fact?")
+            .reprompt("Would you like another fact?")
             .withStandardCard(CARD_TITLE, cardContent,
                 IMAGES.smallImageUrl, `${BUCKET_URL}\/${fact.Attributes.Image}`)
             .getResponse();
     },
 };
 
+
+// const YesIntentHandler = {
+//     canHandle(handlerInput) {
+//         const request = handlerInput.requestEnvelope.request;
+//         return request.type === "IntentRequest"
+//             && request.intent.name === "AMAZON.YesIntent";
+//     },
+//     handle(handlerInput) {
+//         return handlerInput
+//             .responseBuilder
+//             .addDelegateDirective(AzureFactsIntent)
+//             .getResponse();
+//     },
+// };
+//
+// const NoIntentHandler = {
+//     canHandle(handlerInput) {
+//         const request = handlerInput.requestEnvelope.request;
+//         return request.type === "IntentRequest"
+//             && request.intent.name === "AMAZON.NoIntent";
+//     },
+//     handle(handlerInput) {
+//         return handlerInput
+//             .responseBuilder
+//             .addDelegateDirective(ExitHandler)
+//             .getResponse();
+//     },
+// };
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === "IntentRequest"
-            && handlerInput.requestEnvelope.request.intent.name === "AMAZON.HelpIntent";
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === "IntentRequest"
+            && request.intent.name === "AMAZON.HelpIntent";
     },
     handle(handlerInput) {
         speechOutput = `Current facts include: ${FACTS_LIST}.`;
@@ -102,11 +162,15 @@ const HelpIntentHandler = {
     },
 };
 
-const CancelAndStopIntentHandler = {
+const ExitHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === "IntentRequest"
-            && (handlerInput.requestEnvelope.request.intent.name === "AMAZON.CancelIntent"
-                || handlerInput.requestEnvelope.request.intent.name === "AMAZON.StopIntent");
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === `IntentRequest` && (
+            request.intent.name === 'AMAZON.StopIntent' ||
+            request.intent.name === 'AMAZON.PauseIntent' ||
+            request.intent.name === 'AMAZON.CancelIntent' ||
+            request.intent.name === "AMAZON.NoIntent"
+        );
     },
     handle(handlerInput) {
         speechOutput = "Goodbye!";
@@ -121,7 +185,8 @@ const CancelAndStopIntentHandler = {
 
 const SessionEndedRequestHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === "SessionEndedRequest";
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === "SessionEndedRequest";
     },
     handle(handlerInput) {
         //any cleanup logic goes here
@@ -195,7 +260,7 @@ exports.handler = skillBuilder
         LaunchRequestHandler,
         AzureFactsIntent,
         HelpIntentHandler,
-        CancelAndStopIntentHandler,
+        ExitHandler,
         SessionEndedRequestHandler
     )
     .addErrorHandlers(ErrorHandler)
