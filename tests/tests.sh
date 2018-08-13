@@ -1,10 +1,15 @@
 #!/bin/sh
 
+# author: Gary A. Stafford
+# site: https://programmaticponderings.com
+# license: MIT License
+
+# runs a series of tests, output utterances and result status
 # simulate command doesn't seem to work well with initial intent in invocation?
 
 # constants
 LOCALE="en-US"
-SKILL_ID="amzn1.ask.skill.3fa13210-311a-4d19-b822-0e2bca344224"
+SKILL_ID="<your_skill_id>"
 PROFILE="default"
 
 # utterances to tests
@@ -21,6 +26,7 @@ declare -a utterances=(
   "tell me a fact"
    "my name is Matt"
    "when was Azure released"
+   "cancel"
   # "ask Azure Tech Facts about Azure's Cognitive Services"
   # "my name is Frank"
   # "ask Azure Tech Facts for a random fact for Gary"
@@ -35,6 +41,7 @@ do
     --text "$utterance" \
     --locale $LOCALE \
     --skill-id $SKILL_ID \
-    --profile $PROFILE | grep "\"status\": \""
+    --profile $PROFILE | \
+    grep "\"status\": \""
   sleep 2s
 done

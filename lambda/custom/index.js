@@ -2,16 +2,18 @@
 // site: https://programmaticponderings.com
 // license: MIT License
 
-"use strict";
+'use strict';
+
+/* CONSTANTS */
+
 const Alexa = require("ask-sdk-core");
 const AWS = require("aws-sdk");
 const docClient = new AWS.DynamoDB.DocumentClient();
 
-/* CONSTANTS */
 const SKILL_NAME = "Azure Tech Facts";
 const CARD_TITLE = `Welcome to ${SKILL_NAME}`;
-const FACTS_ARRAY = ["description", "released", "global", "regions", "geographies", "platforms", "categories", "products", "cognitive", "compliance", "first", "certifications", "competition"];
-const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Products, Geographies, Global Presence, Platforms, Product Categories, Products, Regions, and Release Date";
+const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Offering, Functions, " +
+    "Geographies, Global Infrastructure, Platforms, Categories, Products, Regions, and Release Date";
 const BUCKET_URL = "https://s3.amazonaws.com/alexa-skills-gstafford";
 
 const IMAGES = {
@@ -21,7 +23,9 @@ const IMAGES = {
 
 let myName;
 
+
 /* INTENT HANDLERS */
+
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         const request = handlerInput.requestEnvelope.request;
@@ -53,7 +57,7 @@ const AzureFactsIntent = {
         if (myName === undefined) {
             myName = slotValue(handlerInput.requestEnvelope.request.intent.slots.myName);
         }
-        
+
         let myQuestion = slotValue(handlerInput.requestEnvelope.request.intent.slots.myQuestion);
 
         if (!myName) {
@@ -63,9 +67,8 @@ const AzureFactsIntent = {
                 .getResponse();
         }
 
-        // return a random fact...
-        if (myQuestion === "random") {
-            myQuestion = FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
+        if (myQuestion.toString().trim() === 'random') {
+            myQuestion = selectRandomFact();
         }
 
         if (!myQuestion) {
@@ -75,14 +78,14 @@ const AzureFactsIntent = {
                 .getResponse();
         }
 
-
         let fact = await buildFactResponse(myName, myQuestion);
         myName = Object.is(myName, undefined) ? undefined : capitalizeFirstLetter(myName);
+        let factToSpeak = `${myName}, ${fact.Attributes.Response}`;
+        cardContent = factToSpeak;
+
         console.log(`myName: ${myName}`);
         console.log(`myQuestion: ${myQuestion}`);
-        let factToSpeak = `${myName}, ${fact.Attributes.Response}`;
         console.log(factToSpeak);
-        cardContent = factToSpeak;
 
         return handlerInput
             .responseBuilder
@@ -124,6 +127,7 @@ const ExitHandler = {
         );
     },
     handle(handlerInput) {
+        myName = undefined;
         speechOutput = "Goodbye!";
         cardContent = speechOutput;
 
@@ -140,7 +144,7 @@ const SessionEndedRequestHandler = {
         return request.type === "SessionEndedRequest";
     },
     handle(handlerInput) {
-        //any cleanup logic goes here
+        myName = undefined;
         return handlerInput.responseBuilder.getResponse();
     },
 };
@@ -160,7 +164,9 @@ const ErrorHandler = {
     },
 };
 
+
 /* HELPER FUNCTIONS */
+
 let cardContent, speechOutput, repromptspeechOutput;
 
 function slotValue(slot, useId) {
@@ -172,6 +178,15 @@ function slotValue(slot, useId) {
         value = resolutionValue.id && useId ? resolutionValue.id : resolutionValue.name;
     }
     return value;
+}
+
+// Pick a random fact to return
+function selectRandomFact() {
+    const FACTS_ARRAY = ['description', 'released', 'global', 'regions',
+        'geographies', 'platforms', 'categories', 'products', 'cognitive',
+        'compliance', 'first', 'certifications', 'competition', 'functions'];
+
+    return FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
 }
 
 // Format names which come over as all lowercase from Alexa
@@ -203,7 +218,9 @@ function buildFactResponse(myName, myQuestion) {
     });
 }
 
+
 /* LAMBDA SETUP */
+
 const skillBuilder = Alexa.SkillBuilders.custom();
 
 exports.handler = skillBuilder

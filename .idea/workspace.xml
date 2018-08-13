@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62df20e6-13e0-4833-bfda-468b9c3ba82e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/lambda/custom/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/lambda/custom/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/AzureFacts.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/AzureFacts.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lambda/custom/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/lambda/custom/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/tests.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -17,11 +18,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tests.sh" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/tests.sh">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lambda/custom/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+            <state relative-caret-position="148">
+              <caret line="146" column="27" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="64">
+                <caret line="62" column="59" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="59" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -41,6 +57,7 @@
       <find>myName</find>
       <find>let myName</find>
       <find>slotToElicit</find>
+      <find>functions</find>
     </findStrings>
     <replaceStrings>
       <replace>AwsFactsIntent</replace>
@@ -60,10 +77,11 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/skill.json" />
         <option value="$PROJECT_DIR$/.ask/config" />
-        <option value="$PROJECT_DIR$/lambda/custom/index.js" />
         <option value="$PROJECT_DIR$/models/en-US.json" />
         <option value="$PROJECT_DIR$/lambda/custom/package.json" />
+        <option value="$PROJECT_DIR$/data/AzureFacts.json" />
         <option value="$PROJECT_DIR$/tests/tests.sh" />
+        <option value="$PROJECT_DIR$/lambda/custom/index.js" />
       </list>
     </option>
   </component>
@@ -109,6 +127,11 @@
               <item name="alexa-skill-azure-facts" type="b2602c69:ProjectViewProjectNode" />
               <item name="alexa-skill-azure-facts" type="462c0819:PsiDirectoryNode" />
               <item name=".ask" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alexa-skill-azure-facts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alexa-skill-azure-facts" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alexa-skill-azure-facts" type="b2602c69:ProjectViewProjectNode" />
@@ -187,12 +210,12 @@
       <workItem from="1532828655523" duration="2184000" />
       <workItem from="1534107999590" duration="8152000" />
       <workItem from="1534116541690" duration="3546000" />
-      <workItem from="1534122003906" duration="4173000" />
+      <workItem from="1534122003906" duration="5045000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35503000" />
+    <option name="totallyTimeSpent" value="36375000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -238,6 +261,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
           <caret line="56" column="43" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="43" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -374,11 +400,6 @@
     <entry file="file://$PROJECT_DIR$/lambda/custom/package-lock.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/AzureFacts.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-498" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alexa-skill-azure-facts/skill.json" />
     <entry file="file://$PROJECT_DIR$/lambda/custom/node_modules/aws-sdk/lib/dynamodb/document_client.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -408,34 +429,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="79">
-            <caret line="63" column="76" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="76" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lambda/custom/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lambda/custom/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skill.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -446,10 +443,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/skill.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/AzureFacts.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2685">
+          <caret line="179" column="7" lean-forward="true" selection-start-line="179" selection-start-column="7" selection-end-line="179" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/tests.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+        <state relative-caret-position="90">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="64">
+            <caret line="62" column="59" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="59" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lambda/custom/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="146" column="27" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
