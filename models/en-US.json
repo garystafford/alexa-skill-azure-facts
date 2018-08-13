@@ -42,11 +42,10 @@
               "type": "AMAZON.US_FIRST_NAME",
               "samples": [
                 "{myName}",
-                "I am {myName}",
-                "I'm {myName}",
                 "my name is {myName}",
                 "my name's {myName}",
                 "name is {myName}",
+                "the name is {myName}",
                 "name's {myName}",
                 "they call me {myName}"
               ]
@@ -55,34 +54,43 @@
               "name": "myQuestion",
               "type": "list_of_facts",
               "samples": [
+                "{myQuestion}",
+                "give me a fact about {myQuestion}",
                 "give me a {myQuestion} fact",
                 "how many {myQuestion} does Azure have",
-                "tell {myName} a {myQuestion} fact",
-                "tell {myName} about {myQuestion}",
-                "tell {myName} about Azure's {myQuestion}",
-                "tell me a {myQuestion} fact",
+                "I'd like to hear about {myQuestion}",
+                "I'd like to hear more about {myQuestion}",
                 "tell me about {myQuestion}",
                 "tell me about Azure's {myQuestion}",
-                "tell me when was Azure {myQuestion}"
+                "tell me about Azure {myQuestion}",
+                "tell me a {myQuestion} fact",
+                "tell me another {myQuestion} fact",
+                "when was Azure {myQuestion}"
               ]
             }
           ],
           "samples": [
-            "a fact about {myQuestion}",
-            "a question about {myQuestion}",
-            "a question about their {myQuestion}",
-            "about {myQuestion} for {myName}",
             "ask a question",
-            "for a {myQuestion} fact for {myName}",
+            "request a fact",
+            "about {myQuestion}",
+            "about {myQuestion} for {myName}",
+            "about Azure's {myQuestion}",
+            "about Azure {myQuestion}",
+            "about Azure's {myQuestion} for {myName}",
+            "about Azure {myQuestion} for {myName}",
+            "give me a {myQuestion} fact",
+            "give me a fact about {myQuestion}",
             "give me a {myQuestion} fact",
             "how many {myQuestion} does Azure have",
-            "request a fact",
-            "tell {myName} a {myQuestion} fact",
-            "tell {myName} about {myQuestion}",
-            "tell {myName} about Azure's {myQuestion}",
-            "tell me a fact",
+            "I'd like to hear about {myQuestion}",
+            "I'd like to hear about Azure {myQuestion}",
+            "I'd like to hear about Azure's {myQuestion}",
+            "I'd like to hear more about {myQuestion}",
             "tell me about {myQuestion}",
             "tell me about Azure's {myQuestion}",
+            "tell me about Azure {myQuestion}",
+            "tell me a {myQuestion} fact",
+            "tell me another {myQuestion} fact",
             "when was Azure {myQuestion}"
           ]
         }
@@ -137,6 +145,11 @@
             },
             {
               "name": {
+                "value": "functions"
+              }
+            },
+            {
+              "name": {
                 "value": "products",
                 "synonyms": [
                   "services"
@@ -146,6 +159,11 @@
             {
               "name": {
                 "value": "categories"
+              }
+            },
+            {
+              "name": {
+                "value": "random"
               }
             },
             {
@@ -234,22 +252,21 @@
         "variations": [
           {
             "type": "PlainText",
-            "value": "Who am I speaking to. You can say things like, my name is Gary."
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Slot.637893440285.407020781347",
-        "variations": [
+            "value": "Who am I speaking to?"
+          },
           {
             "type": "PlainText",
-            "value": "What is your question?"
+            "value": "What's your name. You can say things like, my name is Jeff"
           }
         ]
       },
       {
         "id": "Elicit.Slot.831386167999.1165955124217",
         "variations": [
+          {
+            "type": "PlainText",
+            "value": "What would you like to know about Azure?"
+          },
           {
             "type": "PlainText",
             "value": "What would you like to know about Azure. You can say things like, tell me about Azure's global infrastructure, or when was Azure released?"

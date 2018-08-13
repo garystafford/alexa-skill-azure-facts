@@ -31,8 +31,8 @@ const LaunchRequestHandler = {
         return request.type === "LaunchRequest";
     },
     handle(handlerInput) {
-        speechOutput = `Welcome to ${SKILL_NAME}. To start, say, ask a question, or, give me a fact. To list the available facts, say help.`;
-        repromptspeechOutput = speechOutput;
+        speechOutput = `Welcome to ${SKILL_NAME}. To start, say, ask a question, or, request a fact.`;
+        repromptspeechOutput = `${speechOutput} To list the available facts, say help.`;
         cardContent = `${speechOutput}\nAvailable facts include ${FACTS_LIST}.`;
 
         return handlerInput.responseBuilder
