@@ -21,8 +21,7 @@ const IMAGES = {
     largeImageUrl: `${BUCKET_URL}/azure-512x512.png`
 };
 
-let myName;
-
+let myNameString;
 
 /* INTENT HANDLERS */
 
@@ -52,39 +51,38 @@ const AzureFactsIntent = {
             && request.intent.name === "AzureFactsIntent";
     },
     async handle(handlerInput) {
-        let currentIntent;
+        const request = handlerInput.requestEnvelope.request;
+        let currentIntent = request.intent;
 
-        if (myName === undefined) {
-            myName = slotValue(handlerInput.requestEnvelope.request.intent.slots.myName);
+        if (myNameString === undefined) {
+            myNameString = slotValue(request.intent.slots.myName);
         }
 
-        let myQuestion = slotValue(handlerInput.requestEnvelope.request.intent.slots.myQuestion);
-
-        if (!myName) {
-            currentIntent = myName;
+        if (!myNameString) {
             return handlerInput.responseBuilder
                 .addDelegateDirective(currentIntent)
                 .getResponse();
         }
 
-        if (myQuestion.toString().trim() === 'random') {
-            myQuestion = selectRandomFact();
-        }
+        let myQuestionString = slotValue(request.intent.slots.myQuestion);
 
-        if (!myQuestion) {
-            currentIntent = myQuestion;
+        if (!myQuestionString) {
             return handlerInput.responseBuilder
                 .addDelegateDirective(currentIntent)
                 .getResponse();
         }
 
-        let fact = await buildFactResponse(myName, myQuestion);
-        myName = Object.is(myName, undefined) ? undefined : capitalizeFirstLetter(myName);
-        let factToSpeak = `${myName}, ${fact.Attributes.Response}`;
+        if (myQuestionString.toString().trim() === 'random') {
+            myQuestionString = selectRandomFact();
+        }
+
+        let fact = await buildFactResponse(myNameString, myQuestionString);
+        myNameString = Object.is(myNameString, undefined) ? undefined : capitalizeFirstLetter(myNameString);
+        let factToSpeak = `${myNameString}, ${fact.Attributes.Response}`;
         cardContent = factToSpeak;
 
-        console.log(`myName: ${myName}`);
-        console.log(`myQuestion: ${myQuestion}`);
+        console.log(`myName: ${myNameString}`);
+        console.log(`myQuestion: ${myQuestionString}`);
         console.log(factToSpeak);
 
         return handlerInput
@@ -94,7 +92,7 @@ const AzureFactsIntent = {
             .withStandardCard(CARD_TITLE, cardContent,
                 IMAGES.smallImageUrl, `${BUCKET_URL}\/${fact.Attributes.Image}`)
             .getResponse();
-    },
+    }
 };
 
 const HelpIntentHandler = {
@@ -127,7 +125,6 @@ const ExitHandler = {
         );
     },
     handle(handlerInput) {
-        myName = undefined;
         speechOutput = "Goodbye!";
         cardContent = speechOutput;
 
@@ -144,7 +141,6 @@ const SessionEndedRequestHandler = {
         return request.type === "SessionEndedRequest";
     },
     handle(handlerInput) {
-        myName = undefined;
         return handlerInput.responseBuilder.getResponse();
     },
 };
