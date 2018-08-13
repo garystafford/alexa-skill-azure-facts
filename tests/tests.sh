@@ -4,7 +4,7 @@
 
 # constants
 LOCALE="en-US"
-SKILL_ID="<your_skill_id>"
+SKILL_ID="amzn1.ask.skill.3fa13210-311a-4d19-b822-0e2bca344224"
 PROFILE="default"
 
 # utterances to tests
@@ -13,13 +13,14 @@ declare -a utterances=(
   "ask a question"
   "my name is Alice"
   "tell me about certifications"
-  "load Azure Tech Facts"
-  "give me a fact"
-  "my name is Bob"
   "tell me about Azure's release date"
-  # "ask Azure Tech Facts for a fact"
-  # "my name is Matt"
-  # "when was Azure released"
+  "give me a random fact"
+  "tell me about Azure's Cognitive Services"
+  "stop"
+  "load Azure Tech Facts"
+  "tell me a fact"
+   "my name is Matt"
+   "when was Azure released"
   # "ask Azure Tech Facts about Azure's Cognitive Services"
   # "my name is Frank"
   # "ask Azure Tech Facts for a random fact for Gary"
@@ -34,6 +35,6 @@ do
     --text "$utterance" \
     --locale $LOCALE \
     --skill-id $SKILL_ID \
-    --profile $PROFILE
+    --profile $PROFILE | grep "\"status\": \""
   sleep 2s
 done
