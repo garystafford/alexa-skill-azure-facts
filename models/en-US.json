@@ -10,9 +10,9 @@
           ]
         },
         {
-          "name": "AMAZON.YesIntent",
+          "name": "AMAZON.HelpIntent",
           "samples": [
-            "yes"
+            "help"
           ]
         },
         {

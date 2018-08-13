@@ -50,7 +50,10 @@ const AzureFactsIntent = {
     async handle(handlerInput) {
         let currentIntent;
 
-        myName = slotValue(handlerInput.requestEnvelope.request.intent.slots.myName)
+        if (myName === undefined) {
+            myName = slotValue(handlerInput.requestEnvelope.request.intent.slots.myName);
+        }
+        
         let myQuestion = slotValue(handlerInput.requestEnvelope.request.intent.slots.myQuestion);
 
         if (!myName) {
