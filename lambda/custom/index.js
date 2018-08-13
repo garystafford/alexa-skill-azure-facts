@@ -44,10 +44,8 @@ const LaunchRequestHandler = {
 const AzureFactsIntent = {
     canHandle(handlerInput) {
         const request = handlerInput.requestEnvelope.request;
-        return request.type === "IntentRequest" && (
-            request.intent.name === "AzureFactsIntent" ||
-            request.intent.name === "AMAZON.YesIntent"
-        );
+        return request.type === "IntentRequest"
+            && request.intent.name === "AzureFactsIntent";
     },
     async handle(handlerInput) {
         const slots = handlerInput.requestEnvelope.request.intent.slots;
@@ -56,17 +54,8 @@ const AzureFactsIntent = {
         if (slots !== undefined && slots.myName !== undefined) {
             myName = slotValue(slots.myName);
         } else {
-            console.log(`foo myName: ${myName}`);
-            slotToElicit = "myName";
-            speechOutput = "Who am I speaking to. You can say things like, my name is Gary.";
-            repromptspeechOutput = "Who am I speaking to?";
-            cardContent = speechOutput;
-
             return handlerInput.responseBuilder
-                .addElicitSlotDirective(slotToElicit)
-                .speak(speechOutput)
-                .reprompt(repromptspeechOutput)
-                .withStandardCard(CARD_TITLE, cardContent, IMAGES.smallImageUrl, IMAGES.largeImageUrl)
+                .addDelegateDirective(myName)
                 .getResponse();
         }
 
@@ -115,19 +104,19 @@ const AzureFactsIntent = {
 };
 
 
-// const YesIntentHandler = {
-//     canHandle(handlerInput) {
-//         const request = handlerInput.requestEnvelope.request;
-//         return request.type === "IntentRequest"
-//             && request.intent.name === "AMAZON.YesIntent";
-//     },
-//     handle(handlerInput) {
-//         return handlerInput
-//             .responseBuilder
-//             .addDelegateDirective(AzureFactsIntent)
-//             .getResponse();
-//     },
-// };
+const YesIntentHandler = {
+    canHandle(handlerInput) {
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === "IntentRequest"
+            && request.intent.name === "AMAZON.YesIntent";
+    },
+    handle(handlerInput) {
+        return handlerInput
+            .responseBuilder
+            .addDelegateDirective(myName)
+            .getResponse();
+    },
+};
 //
 // const NoIntentHandler = {
 //     canHandle(handlerInput) {
