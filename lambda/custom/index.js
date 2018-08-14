@@ -21,7 +21,8 @@ const IMAGES = {
     largeImageUrl: `${BUCKET_URL}/azure-512x512.png`
 };
 
-let myNameValue;
+let myNameValue, cardContent, speechOutput, repromptSpeechOutput;
+
 
 /* INTENT HANDLERS */
 
@@ -32,12 +33,12 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         speechOutput = `Welcome to ${SKILL_NAME}. To start, say, ask a question, or, request a fact.`;
-        repromptspeechOutput = `${speechOutput} To list the available facts, say help.`;
+        repromptSpeechOutput = `${speechOutput} To list the available facts, say help.`;
         cardContent = `${speechOutput}\nAvailable facts include ${FACTS_LIST}.`;
 
         return handlerInput.responseBuilder
             .speak(speechOutput)
-            .reprompt(repromptspeechOutput)
+            .reprompt(repromptSpeechOutput)
             .withStandardCard(CARD_TITLE, cardContent,
                 IMAGES.smallImageUrl, `${BUCKET_URL}\/image-01.png`)
             .getResponse();
@@ -104,12 +105,12 @@ const HelpIntentHandler = {
     },
     handle(handlerInput) {
         speechOutput = `Current facts include: ${FACTS_LIST}.`;
-        repromptspeechOutput = "To start, say, ask a question. To list the available facts, say help.";
+        repromptSpeechOutput = "To start, say, ask a question. To list the available facts, say help.";
         cardContent = speechOutput;
 
         return handlerInput.responseBuilder
             .speak(speechOutput)
-            .reprompt(repromptspeechOutput)
+            .reprompt(repromptSpeechOutput)
             .withStandardCard(CARD_TITLE, cardContent, IMAGES.smallImageUrl, IMAGES.largeImageUrl)
             .getResponse();
     },
@@ -153,18 +154,16 @@ const ErrorHandler = {
     handle(handlerInput, error) {
         console.log(`Error handled: ${error.message}`);
         speechOutput = `Sorry, I cannot understand the command. Please say again.`;
-        repromptspeechOutput = speechOutput;
+        repromptSpeechOutput = speechOutput;
         return handlerInput.responseBuilder
             .speak(speechOutput)
-            .reprompt(repromptspeechOutput)
+            .reprompt(repromptSpeechOutput)
             .getResponse();
     },
 };
 
 
 /* HELPER FUNCTIONS */
-
-let cardContent, speechOutput, repromptspeechOutput;
 
 function slotValue(slot, useId) {
     let value = slot.value;
