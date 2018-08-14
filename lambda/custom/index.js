@@ -2,16 +2,18 @@
 // site: https://programmaticponderings.com
 // license: MIT License
 
-"use strict";
+'use strict';
+
+/* CONSTANTS */
+
 const Alexa = require("ask-sdk-core");
 const AWS = require("aws-sdk");
 const docClient = new AWS.DynamoDB.DocumentClient();
 
-/* CONSTANTS */
 const SKILL_NAME = "Azure Tech Facts";
 const CARD_TITLE = `Welcome to ${SKILL_NAME}`;
-const FACTS_ARRAY = ["description", "released", "global", "regions", "geographies", "platforms", "categories", "products", "cognitive", "compliance", "first", "certifications", "competition"];
-const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Products, Geographies, Global Presence, Platforms, Product Categories, Products, Regions, and Release Date";
+const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Offering, Functions, " +
+    "Geographies, Global Infrastructure, Platforms, Categories, Products, Regions, and Release Date";
 const BUCKET_URL = "https://s3.amazonaws.com/alexa-skills-gstafford";
 
 const IMAGES = {
@@ -19,14 +21,18 @@ const IMAGES = {
     largeImageUrl: `${BUCKET_URL}/azure-512x512.png`
 };
 
+let myNameValue;
+
 /* INTENT HANDLERS */
+
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === "LaunchRequest";
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === "LaunchRequest";
     },
     handle(handlerInput) {
-        speechOutput = `Welcome to ${SKILL_NAME}. To start, say, ask a question, or, give me a fact. To list the available facts, say help.`;
-        repromptspeechOutput = speechOutput;
+        speechOutput = `Welcome to ${SKILL_NAME}. To start, say, ask a question, or, request a fact.`;
+        repromptspeechOutput = `${speechOutput} To list the available facts, say help.`;
         cardContent = `${speechOutput}\nAvailable facts include ${FACTS_LIST}.`;
 
         return handlerInput.responseBuilder
@@ -40,54 +46,61 @@ const LaunchRequestHandler = {
 
 const AzureFactsIntent = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === "IntentRequest"
-            && handlerInput.requestEnvelope.request.intent.name === "AzureFactsIntent";
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === "IntentRequest"
+            && request.intent.name === "AzureFactsIntent";
     },
     async handle(handlerInput) {
-        let currentIntent;
+        const request = handlerInput.requestEnvelope.request;
+        let currentIntent = request.intent;
 
-        let myName = slotValue(handlerInput.requestEnvelope.request.intent.slots.myName);
-        let myQuestion = slotValue(handlerInput.requestEnvelope.request.intent.slots.myQuestion);
+        if (myNameValue === undefined) {
+            myNameValue = slotValue(request.intent.slots.myName);
+        }
 
-        if (!myName) {
-            currentIntent = myName;
+        if (!myNameValue) {
             return handlerInput.responseBuilder
                 .addDelegateDirective(currentIntent)
                 .getResponse();
         }
 
-        // return a random fact...
-        if (myQuestion === "random") {
-            myQuestion = FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
-        }
+        let myQuestionValue = slotValue(request.intent.slots.myQuestion);
 
-        if (!myQuestion) {
-            currentIntent = myQuestion;
+        if (!myQuestionValue) {
             return handlerInput.responseBuilder
                 .addDelegateDirective(currentIntent)
                 .getResponse();
         }
 
-        let fact = await buildFactResponse(myName, myQuestion);
-        myName = Object.is(myName, undefined) ? undefined : capitalizeFirstLetter(myName);
-        console.log(`myName: ${myName}`);
-        console.log(`myQuestion: ${myQuestion}`);
-        let factToSpeak = `${myName}, ${fact.Attributes.Response}`;
-        console.log(factToSpeak);
+        if (myQuestionValue.toString().trim() === 'random') {
+            myQuestionValue = selectRandomFact();
+        }
+
+        let fact = await buildFactResponse(myNameValue, myQuestionValue);
+        myNameValue = Object.is(myNameValue, undefined) ? undefined : capitalizeFirstLetter(myNameValue);
+        let factToSpeak = `${myNameValue}, ${fact.Attributes.Response}`;
         cardContent = factToSpeak;
+
+        // optional: logged to CloudWatch Logs
+        console.log(`myName: ${myNameValue}`);
+        console.log(`myQuestion: ${myQuestionValue}`);
+        console.log(`factToSpeak: ${factToSpeak}`);
+
         return handlerInput
             .responseBuilder
             .speak(factToSpeak)
+            .reprompt("You can request another fact")
             .withStandardCard(CARD_TITLE, cardContent,
                 IMAGES.smallImageUrl, `${BUCKET_URL}\/${fact.Attributes.Image}`)
             .getResponse();
-    },
+    }
 };
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === "IntentRequest"
-            && handlerInput.requestEnvelope.request.intent.name === "AMAZON.HelpIntent";
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === "IntentRequest"
+            && request.intent.name === "AMAZON.HelpIntent";
     },
     handle(handlerInput) {
         speechOutput = `Current facts include: ${FACTS_LIST}.`;
@@ -102,11 +115,15 @@ const HelpIntentHandler = {
     },
 };
 
-const CancelAndStopIntentHandler = {
+const ExitHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === "IntentRequest"
-            && (handlerInput.requestEnvelope.request.intent.name === "AMAZON.CancelIntent"
-                || handlerInput.requestEnvelope.request.intent.name === "AMAZON.StopIntent");
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === `IntentRequest` && (
+            request.intent.name === 'AMAZON.StopIntent' ||
+            request.intent.name === 'AMAZON.PauseIntent' ||
+            request.intent.name === 'AMAZON.CancelIntent' ||
+            request.intent.name === "AMAZON.NoIntent"
+        );
     },
     handle(handlerInput) {
         speechOutput = "Goodbye!";
@@ -121,10 +138,10 @@ const CancelAndStopIntentHandler = {
 
 const SessionEndedRequestHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === "SessionEndedRequest";
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === "SessionEndedRequest";
     },
     handle(handlerInput) {
-        //any cleanup logic goes here
         return handlerInput.responseBuilder.getResponse();
     },
 };
@@ -144,7 +161,9 @@ const ErrorHandler = {
     },
 };
 
+
 /* HELPER FUNCTIONS */
+
 let cardContent, speechOutput, repromptspeechOutput;
 
 function slotValue(slot, useId) {
@@ -156,6 +175,15 @@ function slotValue(slot, useId) {
         value = resolutionValue.id && useId ? resolutionValue.id : resolutionValue.name;
     }
     return value;
+}
+
+// Pick a random fact to return
+function selectRandomFact() {
+    const FACTS_ARRAY = ['description', 'released', 'global', 'regions',
+        'geographies', 'platforms', 'categories', 'products', 'cognitive',
+        'compliance', 'first', 'certifications', 'competition', 'functions'];
+
+    return FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
 }
 
 // Format names which come over as all lowercase from Alexa
@@ -187,7 +215,9 @@ function buildFactResponse(myName, myQuestion) {
     });
 }
 
+
 /* LAMBDA SETUP */
+
 const skillBuilder = Alexa.SkillBuilders.custom();
 
 exports.handler = skillBuilder
@@ -195,7 +225,7 @@ exports.handler = skillBuilder
         LaunchRequestHandler,
         AzureFactsIntent,
         HelpIntentHandler,
-        CancelAndStopIntentHandler,
+        ExitHandler,
         SessionEndedRequestHandler
     )
     .addErrorHandlers(ErrorHandler)

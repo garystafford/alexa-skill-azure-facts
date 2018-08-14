@@ -1,6 +1,6 @@
 {
   "name": "alexa-skill-azure-facts",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Alexa Skill that shares interesting facts about Microsoft Azure",
   "main": "index.js",
   "scripts": {
