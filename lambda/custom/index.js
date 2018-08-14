@@ -21,7 +21,7 @@ const IMAGES = {
     largeImageUrl: `${BUCKET_URL}/azure-512x512.png`
 };
 
-let myNameString;
+let myNameValue;
 
 /* INTENT HANDLERS */
 
@@ -54,36 +54,37 @@ const AzureFactsIntent = {
         const request = handlerInput.requestEnvelope.request;
         let currentIntent = request.intent;
 
-        if (myNameString === undefined) {
-            myNameString = slotValue(request.intent.slots.myName);
+        if (myNameValue === undefined) {
+            myNameValue = slotValue(request.intent.slots.myName);
         }
 
-        if (!myNameString) {
+        if (!myNameValue) {
             return handlerInput.responseBuilder
                 .addDelegateDirective(currentIntent)
                 .getResponse();
         }
 
-        let myQuestionString = slotValue(request.intent.slots.myQuestion);
+        let myQuestionValue = slotValue(request.intent.slots.myQuestion);
 
-        if (!myQuestionString) {
+        if (!myQuestionValue) {
             return handlerInput.responseBuilder
                 .addDelegateDirective(currentIntent)
                 .getResponse();
         }
 
-        if (myQuestionString.toString().trim() === 'random') {
-            myQuestionString = selectRandomFact();
+        if (myQuestionValue.toString().trim() === 'random') {
+            myQuestionValue = selectRandomFact();
         }
 
-        let fact = await buildFactResponse(myNameString, myQuestionString);
-        myNameString = Object.is(myNameString, undefined) ? undefined : capitalizeFirstLetter(myNameString);
-        let factToSpeak = `${myNameString}, ${fact.Attributes.Response}`;
+        let fact = await buildFactResponse(myNameValue, myQuestionValue);
+        myNameValue = Object.is(myNameValue, undefined) ? undefined : capitalizeFirstLetter(myNameValue);
+        let factToSpeak = `${myNameValue}, ${fact.Attributes.Response}`;
         cardContent = factToSpeak;
 
-        console.log(`myName: ${myNameString}`);
-        console.log(`myQuestion: ${myQuestionString}`);
-        console.log(factToSpeak);
+        // optional: logged to CloudWatch Logs
+        console.log(`myName: ${myNameValue}`);
+        console.log(`myQuestion: ${myQuestionValue}`);
+        console.log(`factToSpeak: ${factToSpeak}`);
 
         return handlerInput
             .responseBuilder

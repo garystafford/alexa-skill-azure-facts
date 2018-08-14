@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62df20e6-13e0-4833-bfda-468b9c3ba82e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/models/en-US.json" beforeDir="false" afterPath="$PROJECT_DIR$/models/en-US.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lambda/custom/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/lambda/custom/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +16,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="en-US.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/models/en-US.json">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lambda/custom/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
+            <state relative-caret-position="261">
+              <caret line="87" lean-forward="true" selection-start-line="83" selection-end-line="87" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -50,6 +53,8 @@
       <find>console.l</find>
       <find>random</find>
       <find>Help</find>
+      <find>console.log</find>
+      <find>cardContent</find>
     </findStrings>
     <replaceStrings>
       <replace>AwsFactsIntent</replace>
@@ -72,8 +77,8 @@
         <option value="$PROJECT_DIR$/lambda/custom/package.json" />
         <option value="$PROJECT_DIR$/data/AzureFacts.json" />
         <option value="$PROJECT_DIR$/tests/tests.sh" />
-        <option value="$PROJECT_DIR$/lambda/custom/index.js" />
         <option value="$PROJECT_DIR$/models/en-US.json" />
+        <option value="$PROJECT_DIR$/lambda/custom/index.js" />
       </list>
     </option>
   </component>
@@ -202,12 +207,12 @@
       <workItem from="1532828655523" duration="2184000" />
       <workItem from="1534107999590" duration="8152000" />
       <workItem from="1534116541690" duration="3546000" />
-      <workItem from="1534122003906" duration="18511000" />
+      <workItem from="1534122003906" duration="19899000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49841000" />
+    <option name="totallyTimeSpent" value="51229000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -442,16 +447,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lambda/custom/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="101" column="59" lean-forward="true" selection-start-line="101" selection-start-column="59" selection-end-line="101" selection-end-column="59" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/AzureFacts.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1648">
@@ -471,8 +466,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/en-US.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
+        <state relative-caret-position="382">
+          <caret line="70" selection-start-line="58" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lambda/custom/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="87" lean-forward="true" selection-start-line="83" selection-end-line="87" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
