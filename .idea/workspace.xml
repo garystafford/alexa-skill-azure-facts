@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62df20e6-13e0-4833-bfda-468b9c3ba82e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pics/alexa-custom-skill-architecture.png" beforeDir="false" afterPath="$PROJECT_DIR$/pics/alexa-custom-skill-architecture.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pics/alexa-custom-skill-architecture.png" beforeDir="false" afterPath="$PROJECT_DIR$/pics/alexa-custom-skill-architecture-v2.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,9 +17,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="alexa-custom-skill-architecture.png" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pics/alexa-custom-skill-architecture.png">
-          <provider selected="true" editor-type-id="images" />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor>
+                <caret column="20" selection-start-column="20" selection-end-column="20" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -66,7 +73,6 @@
         <option value="$PROJECT_DIR$/.npmignore" />
         <option value="$PROJECT_DIR$/LICENSE.txt" />
         <option value="$PROJECT_DIR$/PaychexFacts.json" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/skill.json" />
         <option value="$PROJECT_DIR$/.ask/config" />
         <option value="$PROJECT_DIR$/lambda/custom/package.json" />
@@ -74,6 +80,7 @@
         <option value="$PROJECT_DIR$/tests/tests.sh" />
         <option value="$PROJECT_DIR$/models/en-US.json" />
         <option value="$PROJECT_DIR$/lambda/custom/index.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -170,10 +177,11 @@
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pics" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -207,12 +215,12 @@
       <workItem from="1532828655523" duration="2184000" />
       <workItem from="1534107999590" duration="8152000" />
       <workItem from="1534116541690" duration="3546000" />
-      <workItem from="1534122003906" duration="20704000" />
+      <workItem from="1534122003906" duration="20836000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52034000" />
+    <option name="totallyTimeSpent" value="52166000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -454,16 +462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="64">
-            <caret line="62" column="59" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="59" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/en-US.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
@@ -481,8 +479,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pics/alexa-custom-skill-architecture.png">
+    <entry file="file://$PROJECT_DIR$/pics/alexa-custom-skill-architecture-v2.png">
       <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor>
+            <caret column="20" selection-start-column="20" selection-end-column="20" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
