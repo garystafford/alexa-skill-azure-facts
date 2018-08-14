@@ -1,8 +1,8 @@
-# Azure Tech Facts Alexa Custom Skill
+# 'Azure Tech Facts' Alexa Custom Skill
 
 Demonstration skill for post, [Building Asynchronous, Serverless Alexa Skills with AWS Lambda, DynamoDB, S3, and Node.js](https://wp.me/p1RD28-5Vq). Explores the creation of an Alexa Custom Skill, using the latest Alexa Skills Kit, the AWS Serverless Platform, and Node.js.
 
-![Alexa Custom Skill Architecture](https://github.com/garystafford/alexa-skill-azure-facts/blob/master/pics/alexa-custom-skill-architecture.png)
+![Alexa Custom Skill Architecture](https://github.com/garystafford/alexa-skill-azure-facts/blob/master/pics/alexa-custom-skill-architecture-v2.png)
 
 ## About the Skill
 
