@@ -12,7 +12,8 @@
         {
           "name": "AMAZON.HelpIntent",
           "samples": [
-            "help"
+            "help",
+            "I need some help"
           ]
         },
         {
@@ -24,7 +25,8 @@
         {
           "name": "AMAZON.StopIntent",
           "samples": [
-            "stop"
+            "stop",
+            "halt"
           ]
         },
         {
@@ -72,12 +74,12 @@
           "samples": [
             "ask a question",
             "request a fact",
-            "about {myQuestion}",
             "about {myQuestion} for {myName}",
-            "about Azure's {myQuestion}",
-            "about Azure {myQuestion}",
             "about Azure's {myQuestion} for {myName}",
             "about Azure {myQuestion} for {myName}",
+            "about {myQuestion}",
+            "about Azure's {myQuestion}",
+            "about Azure {myQuestion}",
             "give me a {myQuestion} fact",
             "give me a fact about {myQuestion}",
             "give me a {myQuestion} fact",
